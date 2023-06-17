@@ -12,34 +12,32 @@ class API {
 class View {
 
     show(cityWeather) {
-        console.log(cityWeather)
         let icon;
         const weatherContainer = document.querySelector(".weather");
         weatherContainer.innerHTML = "";
         const currentWeather = cityWeather.list[0];
-        console.log(currentWeather)
         switch (String(currentWeather.weather[0].id)) {
             case "500" :
-                icon = "../img/weather/rainyday-light.svg";
+                icon = "img/weather/rainyday-light.svg";
                 break;
             case "800" :
-                icon = "../img/weather/sun-light.svg";
+                icon = "img/weather/sun-light.svg";
                 break;
             case "801" :
-                icon = "../img/weather/mostly-cloudy-light.svg";
+                icon = "img/weather/mostly-cloudy-light.svg";
                 break;
             case "802" :
-                icon = "../img/weather/cloud-light.svg";
+                icon = "img/weather/cloud-light.svg";
                 break;
             case "803" :
-                icon = "../img/weather/cloud-light.svg";
+                icon = "img/weather/cloud-light.svg";
                 break;
             case "804" :
-                icon = "../img/weather/mostly-cloudy-light.svg";
+                icon = "img/weather/mostly-cloudy-light.svg";
                 break;
 
             default:
-                icon = "../img/weather/sunrise-light.svg"
+                icon = "img/weather/sunrise-light.svg"
         }
 
         let currentListEl = cityWeather.list[0].dt;
@@ -50,7 +48,6 @@ class View {
                 return el;
             }
         })
-        console.log(weatherDays)
         weatherContainer.insertAdjacentHTML("beforeend", `
 <div class="weather__el ">
     <div class="weather__today">
@@ -90,7 +87,6 @@ class View {
                     </div>
            `
         })
-        console.log(el)
         return el;
     }
 }
@@ -143,6 +139,10 @@ class Controller {
     async getCityWeather(cityName) {
         view.show(await api.getCityWeather(cityName));
     }
+
+    render() {
+        view.show(this.getCityWeather("Dnipro"));
+    }
 }
 
 
@@ -152,6 +152,10 @@ const controller = new Controller(api, view);
 const date = new DateHelper();
 const temp = new Temperature();
 
+
+document.addEventListener("DOMContentLoaded", () => {
+    controller.render();
+})
 
 document.querySelector(".form__btn-search").addEventListener("click", (e) => {
     e.preventDefault();
