@@ -200,6 +200,7 @@ input::placeholder {
     height: 70%;
     box-sizing: border-box;
     background: url("img/fons/lineVector.svg") no-repeat 100%;
+    z-index: 1;
 }
 
 .weather {
@@ -428,16 +429,14 @@ input::placeholder {
         right: -35px;
         top: 14px;
         z-index: 5;
-        /*max-width: 60px;*/
-        /*max-height: 60px;*/
-        /*position: absolute;*/
-        /*right: 20px;*/
-        /*top: 38px;*/
-        /*z-index: 5;*/
     }
 }
 
 @media (max-width: 420px) {
+    .body {
+        background-size: cover;
+    }
+
     .week__day-icon {
         max-width: 60px;
         max-height: 60px;
